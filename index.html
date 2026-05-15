@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CiberLyfe</title>
+
+<style>
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface-strong: #111827;
+  --accent: #38bdf8;
+  --accent-strong: #2563eb;
+  --text: #ffffff;
+  --muted: #cbd5e1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top, rgba(59, 130, 246, 0.12), transparent 28%),
+              linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  color: var(--text);
+}
+
+header {
+  background: linear-gradient(135deg, #111827, #1e293b);
+  padding: 28px 24px 40px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+nav .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+nav .logo-mark {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+nav .logo-mark svg {
+  width: 30px;
+  height: 30px;
+}
+
+nav .brand span {
+  color: var(--accent);
+}
+
+nav ul {
+  display: flex;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+nav a:hover {
+  color: var(--text);
+}
+
+.hero {
+  text-align: center;
+  max-width: 900px;
+  margin: 40px auto 0;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  letter-spacing: 0.02em;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero p {
+  margin: 18px auto 0;
+  max-width: 720px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.button, .secondary {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.button,
+.secondary {
+  background: var(--accent);
+  color: #111827;
+}
+
+.button:hover,
+.secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px rgba(56, 189, 248, 0.25);
+  background: #22d3ee;
+}
+
+main {
+  padding: 40px 24px 56px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 1.85rem;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.services-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 18px;
+  padding: 26px;
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.card small {
+  display: block;
+  margin-top: 14px;
+  color: #94a3b8;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 16px;
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0;
+}
+
+.details {
+  display: none;
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(56, 189, 248, 0.08);
+  border-radius: 12px;
+  color: #dbeafe;
+}
+
+.details.visible {
+  display: block;
+}
+
+.features {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.feature-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.feature-item span {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  padding: 12px;
+  border-radius: 12px;
+  min-width: 48px;
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+}
+
+.feature-item div strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.contact-grid {
+  grid-template-columns: 1.4fr 1fr;
+  align-items: start;
+}
+
+.contact-card {
+  padding: 28px;
+}
+
+.contact-card label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  color: var(--text);
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+
+.contact-card textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+footer {
+  text-align: center;
+  padding: 22px 24px;
+  background: var(--surface-strong);
+  color: #94a3b8;
+}
+
+@media (max-width: 720px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <div class="brand">
+      <span class="logo-mark" aria-label="Logo tuerca CiberLyfe">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 18 L58 22 L66 18 L70 26 L78 30 L74 38 L78 46 L70 50 L66 58 L58 54 L50 58 L42 54 L34 58 L30 50 L22 46 L26 38 L22 30 L30 26 L34 18 Z" fill="rgba(255,255,255,0.08)" stroke="white" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="50" cy="50" r="16" fill="rgba(255,255,255,0.18)" stroke="white" stroke-width="4"/>
+          <circle cx="50" cy="50" r="8" fill="white"/>
+        </svg>
+      </span>
+      Ciber<span>Lyfe</span>
+    </div>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#ventajas">Ventajas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero" id="inicio">
+    <h1>Transforma tu presencia digital con CiberLyfe</h1>
+    <p>Diseño web atractivo, soluciones seguras y soporte profesional para que tu proyecto se vea real, moderno y confiable.</p>
+    <div class="buttons">
+      <button class="button" type="button">Explora nuestro servicio</button>
+      <button class="secondary" type="button">Hablar con nosotros</button>
+    </div>
+    <p style="margin-top: 18px; color: #a5b4fc;">Por ejemplo, podemos desarrollar tu página para vender cursos, recibir reservas o mostrar tu portafolio profesional.</p>
+    <p>Elige una opción y descubre lo que incluye cada servicio.</p>
+  </div>
+
+    <div class="grid services-grid">
+      <article class="card">
+        <img class="card-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2338bdf8'/%3E%3Cpath d='M20 28h24M20 36h16' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M20 20h24' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" alt="Ícono desarrollo web" />
+        <h3>Desarrollo Web</h3>
+        <p>Sites responsivos, landing pages y tiendas online que funcionan en todos los dispositivos.</p>
+        <p style="color: #a5b4fc; margin-top: 12px;">Ejemplo: crea una web para vender cursos, mostrar servicios o recibir pedidos desde Guatemala.</p>
+        <button class="btn-link" onclick="toggleDetails('detalle-web')">Ver más</button>
+        <div id="detalle-web" class="details">
+          <p>Incluye diseño adaptativo, SEO básico, carga rápida y panel de administración sencillo para tus contenidos.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232f855a'/%3E%3Cpath d='M32 14c-10 0-12 9-12 9v10c0 11 12 15 12 15s12-4 12-15V23s-2-9-12-9Z' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Cpath d='M24 34l6 6 10-14' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="Ícono seguridad" />
+        <h3>Seguridad Digital</h3>
+        <p>Protege tu información con seguridad web, copias de seguridad y monitoreo automático.</p>
+        <button class="btn-link" onclick="toggleDetails('detalle-seguridad')">Ver más</button>
+        <div id="detalle-seguridad" class="details">
+          <p>Firewall, certificados SSL gratuitos, actualizaciones constantes y detección de intrusos.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236d28d9'/%3E%3Cpath d='M20 20h24v24H20z' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M28 30h8M28 38h12' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" alt="Ícono soporte" />
+        <h3>Soporte y Mantenimiento</h3>
+        <p>Asistencia técnica rápida para mantener tu proyecto siempre en línea.</p>
+        <button class="btn-link" onclick="toggleDetails('detalle-soporte')">Ver más</button>
+        <div id="detalle-soporte" class="details">
+          <p>Revisión mensual, solución de errores, actualizaciones y asesoría para nuevas funciones.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="ventajas">
+    <div class="section-title">
+      <h2>Por qué CiberLyfe</h2>
+      <p>Opciones reales y un diseño pensado para sorprender.</p>
+    </div>
+
+    <div class="grid features">
+      <div class="card feature-item">
+        <span>⚡</span>
+        <div>
+          <strong>Rápido y moderno</strong>
+          <p>Interfaz limpia y carga optimizada para mejorar la experiencia de tus visitantes.</p>
+        </div>
+      </div>
+      <div class="card feature-item">
+        <span>🔒</span>
+        <div>
+          <strong>Seguro</strong>
+          <p>Tu sitio con protección SSL y prácticas de seguridad web actualizadas.</p>
+        </div>
+      </div>
+      <div class="card feature-item">
+        <span>🛠️</span>
+        <div>
+          <strong>Fácil de mantener</strong>
+          <p>Contenido editable y soporte disponible cuando lo necesites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="section-title">
+      <h2>Contacto</h2>
+      <p>Escribe tu idea y recibes una respuesta rápida.</p>
+    </div>
+
+    <div class="grid contact-grid">
+      <div class="card contact-card">
+        <h3>¿Listo para iniciar?</h3>
+        <p>Completa el formulario y te responderemos en menos de 24 horas.</p>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" placeholder="Tu nombre" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="tucorreo@ejemplo.com" />
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" placeholder="Cuéntanos qué necesitas..."></textarea>
+
+        <button class="button" onclick="enviarMensaje()">Enviar mensaje</button>
+      </div>
+
+      <div class="card contact-card">
+        <h3>Información</h3>
+        <p>Email:</p>
+        <p><strong>hola@ciberlyfe.com</strong></p>
+        <p>Ubicación:</p>
+        <p><strong>Ciudad de Guatemala, Guatemala</strong></p>
+        <p>Teléfono:</p>
+        <p><strong>46323440</strong></p>
+        <p class="status">Disponible ahora</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 CiberLyfe. Diseño pensado para proyectos reales.</p>
+</footer>
+
+<script>
+function toggleDetails(id) {
+  const detail = document.getElementById(id);
+  detail.classList.toggle('visible');
+}
+
+function enviarMensaje() {
+  const nombre = document.getElementById('nombre').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const mensaje = document.getElementById('mensaje').value.trim();
+
+  if (!nombre || !email || !mensaje) {
+    alert('Por favor completa todos los campos antes de enviar.');
+    return;
+  }
+
+  alert(`Gracias ${nombre}! Hemos recibido tu mensaje y te contactaremos pronto.`);
+  document.getElementById('nombre').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('mensaje').value = '';
+}
+</script>
+</body>
+</html>
